@@ -13,84 +13,123 @@
     }
 
     .user-header {
-      font-size: 2.2rem;
+      font-size: 1.2rem;
       font-weight: bold;
-      margin-bottom: 2rem;
+      margin-bottom: 0.6rem;
       text-align: center;
       color: #1e3a8a;
     }
 
     .info-card {
-      border-radius: 15px;
-      padding: 30px;
+      border-radius: 4px;
+      padding: 8px;
       background: linear-gradient(135deg, #3b82f6, #60a5fa);
       color: #ffffff;
       text-align: center;
-      transition: all 0.3s ease-in-out;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: all 0.2s ease-in-out;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.08);
     }
 
     .info-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      transform: translateY(-1px);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
     }
 
     .info-card h2 {
-      font-size: 3rem;
+      font-size: 1.3rem;
       font-weight: 700;
-      margin-bottom: 10px;
+      margin-bottom: 2px;
       color: #ffffff;
     }
 
     .info-card p {
-      font-size: 1.2rem;
+      font-size: 0.75rem;
       margin: 0;
       color: #e2e8f0;
     }
 
     .card-icon {
-      font-size: 4rem;
-      margin-bottom: 20px;
+      font-size: 1.6rem;
+      margin-bottom: 5px;
       color: #ffffff;
     }
 
     .welcome-section {
       background: linear-gradient(135deg, #10b981, #34d399);
       color: #ffffff;
-      border-radius: 15px;
-      padding: 30px;
-      margin-bottom: 30px;
+      border-radius: 4px;
+      padding: 8px;
+      margin-bottom: 8px;
       text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.08);
     }
 
     .welcome-section h1 {
-      font-size: 2.5rem;
+      font-size: 1.3rem;
       font-weight: 700;
-      margin-bottom: 10px;
+      margin-bottom: 2px;
     }
 
     .welcome-section p {
-      font-size: 1.1rem;
+      font-size: 0.75rem;
       margin: 0;
       opacity: 0.9;
     }
 
+    header h2 {
+      font-size: 1.2rem !important;
+    }
+    header .nav-link {
+      font-size: 0.65rem !important;
+    }
+
+    .table-responsive {
+      margin-top: 0.8rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .table-dark th {
+      background-color: #212529;
+      color: #ffffff;
+      font-size: 0.78rem;
+    }
+    .table-bordered th, .table-bordered td {
+      border-color: #dee2e6;
+      font-size: 0.73rem;
+    }
+    .table-hover tbody tr:hover {
+      background-color: #e9ecef;
+    }
+    .badge {
+      font-size: 0.5em;
+      padding: 0.1em 0.25em;
+    }
+
     @media (max-width: 768px) {
       .user-header {
-        font-size: 1.8rem;
+        font-size: 0.9rem;
       }
       .info-card {
-        padding: 20px;
+        padding: 5px;
       }
       .info-card h2 {
-        font-size: 2.5rem;
+        font-size: 1.1rem;
       }
       .welcome-section h1 {
-        font-size: 2rem;
+        font-size: 1rem;
       }
       .card-icon {
-        font-size: 3rem;
+        font-size: 1.3rem;
+      }
+      header h2 {
+        font-size: 0.9rem !important;
+      }
+      header .nav-link {
+        font-size: 0.6rem !important;
+      }
+      .table-bordered th, .table-bordered td {
+        font-size: 0.7rem;
       }
     }
   </style>
@@ -113,45 +152,96 @@
     header {
       background: #1e3a8a;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-      padding: 1.5rem;
+      padding: 0.4rem;
     }
     .nav-link:hover {
       color: #ffffff !important;
     }
     @media (max-width: 768px) {
       header {
-        padding: 1rem;
+        padding: 0.3rem;
       }
       h2 {
-        font-size: 1.8rem;
+        font-size: 1rem;
       }
       .nav-link {
-        font-size: 1rem;
+        font-size: 0.65rem;
       }
     }
   </style>
 </header>
 
-<div class="container mt-5">
+<div class="container mt-0">
   <!-- Welcome Section -->
   <div class="welcome-section">
     <h1>🌟 Chào mừng bạn đến với Hotel Manager</h1>
     <p>Xem thông tin tổng quan về phòng của chúng tôi</p>
   </div>
 
-  <!-- Room Information Card -->
-  <div class="row justify-content-center">
-    <div class="col-md-6">
+  <!-- Room Information Cards -->
+  <div class="row justify-content-center mb-0 g-0">
+    <div class="col-md-3">
       <div class="info-card">
         <i class="fas fa-bed card-icon"></i>
         <h2 th:text="${totalRooms}">0</h2>
         <p>Tổng số phòng</p>
       </div>
     </div>
+    <div class="col-md-3">
+      <div class="info-card" style="background: linear-gradient(135deg, #10b981, #34d399);">
+        <i class="fas fa-door-open card-icon"></i>
+        <h2 th:text="${emptyRooms}">0</h2>
+        <p>Phòng trống</p>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="info-card" style="background: linear-gradient(135deg, #ef4444, #f87171);">
+        <i class="fas fa-user-friends card-icon"></i>
+        <h2 th:text="${occupiedRooms}">0</h2>
+        <p>Phòng đang sử dụng</p>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="info-card" style="background: linear-gradient(135deg, #f59e0b, #fbbf24); color: #1e293b;">
+        <i class="fas fa-calendar-check card-icon"></i>
+        <h2 th:text="${bookedRooms}">0</h2>
+        <p>Phòng đã đặt</p>
+      </div>
+    </div>
   </div>
 
-  <!-- Additional Info Cards (Optional) -->
+  <!-- Room List Table -->
+  <h2 class="text-center mb-0 user-header">Danh sách phòng chi tiết</h2>
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover align-middle">
+      <thead class="table-dark">
+      <tr>
+        <th>#</th>
+        <th>Số phòng</th>
+        <th>Trạng thái</th>
+        <th>Loại phòng</th>
+        <th>Giá mỗi đêm</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="room, iterStat : ${rooms}">
+        <th th:text="${iterStat.index + 1}">1</th>
+        <td th:text="${room.roomNumber}">101</td>
+        <td>
+          <span th:classappend="'badge ' +
+                        (${room.status.name()} == 'EMPTY' ? 'bg-success' :
+                        (${room.status.name()} == 'BOOKED' ? 'bg-warning text-dark' :
+                        (${room.status.name()} == 'OCCUPIED' ? 'bg-danger' : 'bg-secondary')))"
+                th:text="${room.status.name()}">
+                    </span>
+        </td>
+        <td th:text="${room.roomType != null ? room.roomType.name : '-'}">Phòng đơn</td>
+        <td th:text="${room.roomType != null ? #numbers.formatDecimal(room.roomType.pricePerNight, 0, 'COMMA', 0, 'POINT') + ' đ' : '-'}">500.000 đ</td>
+      </tr>
+      </tbody>
+    </table>
   </div>
+</div>
 
 </body>
 </html>

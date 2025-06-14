@@ -14,9 +14,13 @@ public class UserController {
     @Autowired
     private IRoomService roomService;
 
-    @GetMapping("/rooms")
+    @GetMapping("")
     public String showUserRooms(Model model) {
         model.addAttribute("totalRooms", roomService.getTotalRooms());
+        model.addAttribute("emptyRooms", roomService.getEmptyRooms());
+        model.addAttribute("occupiedRooms", roomService.getOccupiedRooms());
+        model.addAttribute("bookedRooms", roomService.getBookedRooms());
+        model.addAttribute("rooms", roomService.findAllWithRoomType());
         return "user/rooms";
     }
 } 
