@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách loại phòng</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+
+
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0">Danh sách loại phòng</h2>
+        <a th:href="@{/admin/room-types/create}" class="btn btn-primary">
+            ➕ Thêm loại phòng
+        </a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered align-middle">
+            <thead class="table-dark text-center">
+            <tr>
+                <th>ID</th>
+                <th>Tên loại phòng</th>
+                <th>Mô tả</th>
+                <th>Giá mỗi đêm (VNĐ)</th>
+                <th>Hành động</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="roomType : ${roomTypes}">
+                <td th:text="${roomType.id}">1</td>
+                <td th:text="${roomType.name}">Phòng đơn</td>
+                <td th:text="${roomType.description}">Mô tả</td>
+                <td th:text="${#numbers.formatDecimal(roomType.pricePerNight, 0, 'COMMA', 0, 'POINT')}">500,000</td>
+                <td class="text-center">
+                    <a th:href="@{'/admin/room-types/edit/' + ${roomType.id}}" class="btn btn-sm btn-warning me-1">
+                        ✏ Sửa
+                    </a>
+                    <a th:href="@{'/admin/room-types/delete/' + ${roomType.id}}" class="btn btn-sm btn-danger"
+                       onclick="return confirm('Bạn có chắc muốn xoá?')">
+                        🗑 Xoá
+                    </a>
+                </td>
+            </tr>
+            <tr th:if="${roomTypes.size() == 0}">
+                <td colspan="5" class="text-center text-muted">Không có loại phòng nào.</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-3">
+        <a class="btn btn-secondary" th:href="@{/admin}">⬅ Quay lại trang chính</a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<div th:fragment="header">
+    <header>
+        <div class="container d-flex justify-content-between align-items-center">
+            <h2 class="m-0" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 2.2rem; font-weight: 700; color: #ffffff;">🏨 Hotel Manager</h2>
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/admin/rooms" style="font-family: 'Inter', sans-serif; font-size: 1.1rem; color: #d1d5db; transition: color 0.2s ease;">Rooms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/admin/employees" style="font-family: 'Inter', sans-serif; font-size: 1.1rem; color: #d1d5db; transition: color 0.2s ease;">Employees</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/admin/room-types" style="font-family: 'Inter', sans-serif; font-size: 1.1rem; color: #d1d5db; transition: color 0.2s ease;">Room Types</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <style>
+            header {
+                background: #1e3a8a; /* Solid deep blue for distinct header */
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+                padding: 1.5rem;
+            }
+            .nav-link:hover {
+                color: #ffffff !important;
+            }
+            @media (max-width: 768px) {
+                header {
+                    padding: 1rem;
+                }
+                h2 {
+                    font-size: 1.8rem;
+                }
+                .nav-link {
+                    font-size: 1rem;
+                }
+            }
+        </style>
+    </header>
+</div>
+
+<!--<div th:replace="header/header :: header"></div>-->

@@ -1,0 +1,68 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.4.5'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+// ✅ Dùng để giám sát và theo dõi ứng dụng (health, metrics, info, env, v.v.)
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+// ✅ Cung cấp các tính năng Spring Data JPA để làm việc với cơ sở dữ liệu quan hệ
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+// ✅ Hỗ trợ Thymeleaf làm công cụ render giao diện web (HTML templates)
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+// ✅ Cung cấp các thành phần để xây dựng ứng dụng web RESTful (Spring MVC)
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+// ✅ Chỉ dùng trong quá trình biên dịch, thêm các annotation như @Getter, @Setter từ Lombok
+    compileOnly 'org.projectlombok:lombok'
+
+// ✅ Chỉ dùng trong môi trường dev: tự động reload lại ứng dụng khi có thay đổi mã nguồn
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+// ✅ Driver JDBC chính thức của MySQL, dùng để Spring Boot kết nối với MySQL
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
+// ✅ Bộ xử lý annotation để Lombok hoạt động đúng khi biên dịch
+    annotationProcessor 'org.projectlombok:lombok'
+
+// ✅ Cung cấp các thư viện hỗ trợ kiểm thử (unit test, mock, v.v.)
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+// ✅ Thêm launcher cho JUnit Platform để chạy các test (phụ trợ cho testImplementation)
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+// ✅ Cung cấp thư viện để kiểm tra dữ liệu đầu vào (validation như @NotNull, @Size...)
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+//     thư viện của security
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+}
+
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
