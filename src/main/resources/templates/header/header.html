@@ -1,19 +1,13 @@
 <div th:fragment="header">
     <header>
         <div class="container d-flex justify-content-between align-items-center">
-            <h2 class="m-0" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 2.2rem; font-weight: 700; color: #ffffff;">🏨 Hotel Manager</h2>
+            <h2 class="m-0" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 2.2rem; font-weight: 700; color: #ffffff;">🏨 Quản Lý Khách Sạn</h2>
             <nav>
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="/admin/rooms" style="font-family: 'Inter', sans-serif; font-size: 1.1rem; color: #d1d5db; transition: color 0.2s ease;">Rooms</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="/admin/employees" style="font-family: 'Inter', sans-serif; font-size: 1.1rem; color: #d1d5db; transition: color 0.2s ease;">Employees</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="/admin/room-types" style="font-family: 'Inter', sans-serif; font-size: 1.1rem; color: #d1d5db; transition: color 0.2s ease;">Room Types</a>
-                    </li>
-                </ul>
+                <form th:action="@{/logout}" method="post" class="d-inline">
+                    <button type="submit" class="btn btn-outline-light">
+                        <i class="fas fa-sign-out-alt"></i> Đăng Xuất
+                    </button>
+                </form>
             </nav>
         </div>
         <style>
@@ -24,6 +18,16 @@
             }
             .nav-link:hover {
                 color: #ffffff !important;
+            }
+            .btn-outline-light {
+                border: 2px solid #ffffff;
+                color: #ffffff;
+                padding: 0.5rem 1rem;
+                transition: all 0.3s ease;
+            }
+            .btn-outline-light:hover {
+                background-color: #ffffff;
+                color: #1e3a8a;
             }
             @media (max-width: 768px) {
                 header {

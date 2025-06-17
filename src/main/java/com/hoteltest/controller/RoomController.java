@@ -22,15 +22,8 @@ public class RoomController {
     @Autowired
     private IRoomService roomService;
 
-    // ✅ Hiển thị trạng thái phòng
-    @GetMapping("/status")
-    public String viewRoomStatus(Model model) {
-        List<Room> rooms = roomService.findAll();
-        model.addAttribute("rooms", rooms);
-        return "admin/room/room-status";
-    }
 
-    // ✅ Danh sách phòng
+
     @GetMapping("")
     public String showRooms(Model model) {
         List<Room> rooms = roomService.findAll();
@@ -38,7 +31,7 @@ public class RoomController {
         return "admin/room/room";
     }
 
-    // ✅ Hiển thị form tạo phòng
+
     @GetMapping("/create")
     public String showCreateForm(Model model) {
         model.addAttribute("room", new Room());
@@ -47,7 +40,7 @@ public class RoomController {
         return "admin/room/create";
     }
 
-    // ✅ Xử lý tạo phòng
+
     @PostMapping("/create")
     public String createRoom(@ModelAttribute("room") @Valid Room room,
                              BindingResult result,
@@ -84,7 +77,7 @@ public class RoomController {
         return "redirect:/admin/rooms";
     }
 
-    // ✅ Chi tiết phòng
+
     @GetMapping("/{id}")
     public String showRoomEdit(@PathVariable Long id, Model model) {
         Room room = roomService.findById(id);
@@ -93,7 +86,7 @@ public class RoomController {
         model.addAttribute("roomTypes", roomTypeService.findAll()); // ✅ Thêm để chọn RoomType
         return "admin/room/room-edit";
     }
-    // ✅ Xử lý cập nhật phòng
+
     @PostMapping("/update")
     public String updateRoom(@ModelAttribute("room") @Valid Room room,
                              BindingResult result,
@@ -128,7 +121,7 @@ public class RoomController {
         return "redirect:/admin/rooms";
     }
 
-    // ✅ Xóa phòng
+
     @GetMapping("/delete/{id}")
     public String deleteRoom(@PathVariable Long id) {
         roomService.deleteById(id);
